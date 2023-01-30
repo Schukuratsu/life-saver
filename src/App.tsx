@@ -1,13 +1,10 @@
-import { Button, Form, FormProps, Layout, Table, TableProps } from "antd";
+import { Layout, Table, TableProps } from "antd";
 import { useState } from "react";
 import "./App.css";
-import { Category } from "./components/Category";
-import { DateField } from "./components/DateField";
-import { Description } from "./components/Description";
-import { Type } from "./components/Type";
-import { Value } from "./components/Value";
 import { Dayjs } from "dayjs";
 import { DATE_FORMAT } from "./constants";
+import { SpendingForm, SpendingFormProps } from "./components/SpendingForm";
+import { Spending } from "./types/Spending";
 
 const { Sider, Content } = Layout;
 
@@ -16,14 +13,6 @@ const SiderStyle: React.CSSProperties = {
   backgroundColor: "#fff",
   border: "1px solid black",
   padding: "10px",
-};
-
-type Spending = {
-  category: string;
-  type: string;
-  description: string;
-  dateField: Dayjs;
-  value: number;
 };
 
 const columns: TableProps<Spending>["columns"] = [
@@ -42,11 +31,10 @@ const columns: TableProps<Spending>["columns"] = [
 ];
 
 function App() {
-  const [form] = Form.useForm<Spending>();
 
   const [spendings, setSpendings] = useState<Spending[]>([]);
 
-  const handleFinish: FormProps["onFinish"] = (values) => {
+  const handleFinish: SpendingFormProps['onFinish'] = (values) => {
     setSpendings((v) => [...v, values]);
   };
 
@@ -54,16 +42,7 @@ function App() {
     <div className="App">
       <Layout>
         <Sider style={SiderStyle} width={450}>
-          <Form form={form} onFinish={handleFinish}>
-            <Category />
-            <Type />
-            <Description />
-            <DateField />
-            <Value />
-            <Button type="primary" htmlType="submit">
-              Salvar
-            </Button>
-          </Form>
+          <SpendingForm onFinish={handleFinish} />
         </Sider>
         <Content>
           <Table<Spending> columns={columns} dataSource={spendings} />
