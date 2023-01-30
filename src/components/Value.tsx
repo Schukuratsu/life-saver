@@ -8,7 +8,10 @@ export function Value() {
       initialValue={0}
       rules={[
         { required: true, message: "Este campo é obrigatório" },
-        { min: 0, message: "o valor deve ser maior que 0" },
+        {
+          pattern: /(([0-9]){2,}|([1-9]){1,})/,
+          message: "o valor deve ser maior que 0",
+        },
       ]}
       validateFirst
     >
