@@ -1,4 +1,5 @@
 import { Select, Form } from "antd";
+import { CATEGORY_OPTIONS } from "../constants";
 
 export function Category() {
   return (
@@ -10,10 +11,9 @@ export function Category() {
       validateFirst
     >
       <Select>
-        <Select.Option value="health">Saúde</Select.Option>
-        <Select.Option value="transportation">Transporte</Select.Option>
-        <Select.Option value="food">Alimentação</Select.Option>
-        <Select.Option value="entertainment">Entretenimento</Select.Option>
+        {CATEGORY_OPTIONS.map(({ value, label }) => (
+          <Select.Option value={value}>{label}</Select.Option>
+        ))}
       </Select>
     </Form.Item>
   );

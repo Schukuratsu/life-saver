@@ -1,17 +1,18 @@
 import { Radio, Form } from "antd";
+import { TYPE_OPTIONS } from "../constants";
 
-export function SpendingType() {
+export function Type() {
   return (
     <Form.Item
-      name="spendingType"
+      name="type"
       label="Tipo de gasto"
       rules={[{ required: true, message: "Este campo é obrigatório" }]}
       validateFirst
     >
       <Radio.Group>
-        <Radio value="recurring">Recorrente</Radio>
-        <Radio value="unique">Único</Radio>
-        <Radio value="emergency">Emergencial</Radio>
+        {TYPE_OPTIONS.map(({ value, label }) => (
+          <Radio value={value}>{label}</Radio>
+        ))}
       </Radio.Group>
     </Form.Item>
   );

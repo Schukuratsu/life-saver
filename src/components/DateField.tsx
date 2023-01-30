@@ -1,17 +1,17 @@
 import { Form, DatePicker } from "antd";
 import dayjs from "dayjs";
-import { dateFormat } from "../constants";
+import { DATE_FORMAT } from "../constants";
 
-export function DateOfSpending() {
+export function DateField() {
   return (
     <Form.Item
-      name="dateOfSpending"
-      label="Data do gasto"
+      name="date"
+      label="Data"
       initialValue={dayjs(new Date())}
       rules={[{ required: true, message: "Este campo é obrigatório" }]}
       validateFirst
     >
-      <DatePicker format={dateFormat} />
+      <DatePicker format={DATE_FORMAT} />
     </Form.Item>
   );
 }
