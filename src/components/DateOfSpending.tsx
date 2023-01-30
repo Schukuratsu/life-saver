@@ -8,7 +8,8 @@ export function DateOfSpending() {
       name="dateOfSpending"
       label="Data do gasto"
       initialValue={dayjs(new Date())}
-      required
+      rules={[{ required: true, message: "Este campo é obrigatório" }]}
+      validateFirst
     >
       <DatePicker format={dateFormat} />
     </Form.Item>

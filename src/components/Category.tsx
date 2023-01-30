@@ -2,7 +2,13 @@ import { Select, Form } from "antd";
 
 export function Category() {
   return (
-    <Form.Item name="category" label="Categoria">
+    <Form.Item
+      name="category"
+      label="Categoria"
+      required
+      rules={[{ required: true, message: "Este campo é obrigatório" }]}
+      validateFirst
+    >
       <Select>
         <Select.Option value="health">Saúde</Select.Option>
         <Select.Option value="transportation">Transporte</Select.Option>
