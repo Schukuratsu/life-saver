@@ -1,6 +1,7 @@
 import { Form } from "antd";
 import "./App.css";
 import { Category } from "./components/Category";
+import { Description } from "./components/Description";
 import { SpendingType } from "./components/SpendingType";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Form>
         <Category />
         <SpendingType />
+        <Description />
       </Form>
     </div>
   );
