@@ -1,4 +1,5 @@
 import { Form, InputNumber } from "antd";
+import { formatValue, parseValue } from "../utils/valueUtils";
 
 export function Value() {
   return (
@@ -9,21 +10,16 @@ export function Value() {
       rules={[
         { required: true, message: "Este campo é obrigatório" },
         {
-          pattern: /(([0-9]){2,}|([1-9]){1,})/,
+          pattern: /good/,
           message: "o valor deve ser maior que 0",
+          transform(value) {
+            return Number(value) > 0 ? "good" : "bad";
+          },
         },
       ]}
       validateFirst
     >
-      <InputNumber
-        formatter={(value) =>
-          `R$ ${value}`.replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        }
-        parser={(value) =>
-          value!.replace(/R\$\s?|(\.*)/g, "").replace(",", ".")
-        }
-        precision={2}
-      />
+      <InputNumber formatter={(v)=>formatValue(v, true)} parser={parseValue} precision={2} />
     </Form.Item>
   );
 }

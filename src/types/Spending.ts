@@ -4,6 +4,6 @@ export type Spending = {
   category: string;
   type: string;
   description: string;
-  dateField: Dayjs;
+  date: Dayjs;
   value: number;
 };
