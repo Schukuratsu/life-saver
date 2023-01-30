@@ -1,10 +1,9 @@
-import { Layout, Table, TableProps } from "antd";
+import { Layout } from "antd";
 import { useState } from "react";
 import "./App.css";
-import { Dayjs } from "dayjs";
-import { DATE_FORMAT } from "./constants";
 import { SpendingForm, SpendingFormProps } from "./components/SpendingForm";
-import { Spending } from "./types/Spending";
+import { Spending } from "./types/spending";
+import { SpendingTable } from "./components/SpendingTable";
 
 const { Sider, Content } = Layout;
 
@@ -14,21 +13,6 @@ const SiderStyle: React.CSSProperties = {
   border: "1px solid black",
   padding: "10px",
 };
-
-const columns: TableProps<Spending>["columns"] = [
-  { title: "Categoria", dataIndex: "category", key: "category" },
-  { title: "Tipo", dataIndex: "type", key: "type" },
-  { title: "Descrição", dataIndex: "description", key: "description" },
-  {
-    title: "Data",
-    dataIndex: "date",
-    key: "date",
-    render(value: Dayjs, record, index) {
-      return value.format(DATE_FORMAT);
-    },
-  },
-  { title: "Valor", dataIndex: "value", key: "value" },
-];
 
 function App() {
 
@@ -45,7 +29,7 @@ function App() {
           <SpendingForm onFinish={handleFinish} />
         </Sider>
         <Content>
-          <Table<Spending> columns={columns} dataSource={spendings} />
+          <SpendingTable spendings={spendings} />
         </Content>
       </Layout>
     </div>

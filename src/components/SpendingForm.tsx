@@ -1,5 +1,5 @@
 import { Form, Button, FormProps } from "antd";
-import { Spending } from "../types/Spending";
+import { Spending } from "../types/spending";
 import { Category } from "./Category";
 import { DateField } from "./DateField";
 import { Description } from "./Description";
